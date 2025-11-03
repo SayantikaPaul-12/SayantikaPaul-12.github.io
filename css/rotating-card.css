@@ -14,6 +14,7 @@
 				font-size: 14px;
 				font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
 				background-color: #E5E9ED;
+				height: 100%;
 }
 /* flip the pane when hovered */
 .card-container:not(.manual-flip):hover .card,
@@ -55,7 +56,9 @@
 	top: 0;
 	left: 0;
 	background-color: #FFF;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	border: 2px solid #fff;
+	border-radius: 8px;
 }
 
 /* front pane, placed above back */
@@ -82,20 +85,32 @@
 
 .card{
     background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 4px;
+    border-radius: 8px;
     color: #444444;
+	border: 2px solid #fff;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	height: 100%;
 }
 .card-container, .front, .back {
 	width: 100%;
-	height: 420px;
-	border-radius: 4px;
+	height: 480px;
+	border-radius: 8px;
+	min-height: 480px;
+	max-height: 480px;
 }
+
 .card .cover{
-    height: 105px;
-    border-radius: 4px 4px 0 0;
+    height: 100%;
+    border-radius: 6px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .card .cover img{
     width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 .card .user{
     display: block;
@@ -116,19 +131,63 @@
     padding: 10px 20px 20px;
 }
 
-.card .front .content {
-	margin: 95px auto 0;
+.card .front {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .card .content .card-main {
-		line-height: 14px;
+	line-height: 18px;
     min-height:130px;
 }
-.card .back .content .card-main {
-    height: 215px;
+.card .back {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
+.card .back .content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	min-height: 0;
+}
+.card .back .content .card-main {
+    flex: 1;
+	padding: 5px 0;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	min-height: 0;
+}
+.card .back .content .card-main p {
+	margin-bottom: 12px;
+	font-size: 14px;
+	line-height: 22px;
+	color: #313131;
+	flex-shrink: 0;
+}
+.card .back .content .card-main p.text-center {
+	text-align: left;
+	padding: 0 10px;
+}
+.card .back .content .card-main p.technology-text {
+	flex-shrink: 0;
+	margin-top: auto;
+}
+
 .card .back .footer {
-	padding: 0 0 0;
-	margin: 0px;
+	padding: 12px 15px;
+	margin: 0;
+	flex-shrink: 0;
+	border-top: 2px solid #fceaea;
+	text-align: center;
+	overflow: hidden;
+	box-sizing: border-box;
+	width: 100%;
+}
+.card .back .header {
+	flex-shrink: 0;
 }
 .card .name {
     font-size: 22px;
@@ -147,26 +206,59 @@
     margin-bottom: 20px;
 }
 .card .footer {
-    border-top: 1px solid #EEEEEE;
+    border-top: 2px solid #fceaea;
     color: #999999;
-    margin: 30px 0 0;
-/*    padding: 10px 0 0;*/
+    margin: 0;
+	padding: 12px 15px;
     text-align: center;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 .card .footer .social-links{
-    font-size: 18px;
+    font-size: 16px;
+	width: 100%;
+	box-sizing: border-box;
 }
-.card .footer .social-links a{
-    margin: 0 7px;
+.card .footer .social-links a.demo{
+    display: inline-block;
+	margin: 0;
+	padding: 8px 20px;
+	background: linear-gradient(135deg, #11ABB0 0%, #0a8a8f 100%);
+	color: #fff !important;
+	text-decoration: none;
+	border-radius: 20px;
+	font-weight: 500;
+	font-size: 13px;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 6px rgba(17, 171, 176, 0.3);
+	max-width: 100%;
+	box-sizing: border-box;
+	word-wrap: break-word;
+}
+.card .footer .social-links a.demo:hover {
+	background: linear-gradient(135deg, #0a8a8f 0%, #11ABB0 100%);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(17, 171, 176, 0.4);
 }
 .card .footer .btn-simple{
     margin-top: -6px;
 }
 .card .header {
-    padding: 15px 20px 10px 10px;
-		margin-bottom: 10px;
-		border-bottom: 1px solid #EEEEEE;
-    height: 125px;
+    padding: 15px 20px 10px 20px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid #fceaea;
+    min-height: 75px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.card .header h3.name {
+	font-size: 20px;
+	font-weight: 600;
+	color: #313131;
+	margin: 0;
+	text-align: center;
+	line-height: 26px;
 }
 .card .motto{
     border-bottom: 1px solid #EEEEEE;
@@ -336,11 +428,11 @@
 		height: 295px;
 	}
 	.card .cover {
-		height: 250px;
+		height: 100%;
 	}
 	
 	.card-container, .front, .back {
-		height: 470px;
+		height: 480px;
 	}
 	
 }
@@ -354,11 +446,11 @@
 		height: 320px;
 	}
 	.card .cover {
-		height: 275px;
+		height: 100%;
 	}
 	
 	.card-container, .front, .back {
-		height: 500px;
+		height: 480px;
 	}
 	
 }
